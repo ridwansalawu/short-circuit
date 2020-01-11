@@ -5,6 +5,7 @@ import './App.css';
 import Address from './components/Address';
 import GoogleMaps from './components/GoogleMaps';
 import Navigate from './components/Navigate';
+import Weather from './components/Weather';
 
 
 
@@ -24,6 +25,7 @@ function App() {
     <Address />
     <GoogleMaps />
     <Navigate />
+    <Weather />
     
     </div>
   );

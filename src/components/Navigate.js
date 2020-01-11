@@ -23,17 +23,11 @@ class Navigate extends Component {
             })
     }
 
-
-
-
-
-
-
     render() {
         return (
             <div>
                 <h1>Navigation Gifs</h1>
-                <img src={this.state.gif} alt="giphy" sizes="(max-width: 600px) 200px, 50vw"/>
+                <img src={this.state.gif} alt="giphy" sizes="(max-width: 300px) 200px, 50vw"/>
 
             </div>
         )

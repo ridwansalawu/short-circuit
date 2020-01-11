@@ -15,12 +15,47 @@ class Address extends Component {
       super(props)
     
       this.state = {
-         
+          number:"",
+          street:"",
+          suburb: "",
+          region: "",
+          country: ""
       };
     };
 
+    handleChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+
     handleSubmit = (e) => {
         e.preventDefault()
+
+        const post = {
+            number: this.state.number,
+            street:this.state.street,
+            suburb: this.state.suburb,
+            region: this.state.region,
+            country: this.state.country
+        }
+
+        fetch ('https://jsonplaceholder.typicode.com/posts', {
+            method: 'POST',
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+
+            },
+            body: JSON.stringify(post)
+        }
+             )
+             .then(res => res.json())
+             .then(data => console.log(data))
+
+
+
+
+
+
+
         console.log("submitted")
     }
     
@@ -36,7 +71,14 @@ class Address extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit} noValidate autoComplete="off">
-                <TextField required id="standard-required" label="unit/no" name="number" />
+                <TextField 
+                required 
+                id="standard-required" 
+                label="unit/no" 
+                name="number" 
+                onChange={this.handleChange}
+                value={this.state.number}
+                />
                 <br/>
                 
                     <div id="new-address"></div>
@@ -47,6 +89,7 @@ class Address extends Component {
                     type="text"
                     autoComplete=""
                     onChange={this.handleChange}
+                    value={this.state.street}
                 />
         <br/>
                 <TextField
@@ -54,6 +97,7 @@ class Address extends Component {
                     label="Suburb/City"
                     type="text"
                     onChange={this.handleChange}
+                    value={this.state.suburb}
                 />
         <br/>
                 <TextField
@@ -62,6 +106,7 @@ class Address extends Component {
                     type="text"
                     defaultValue="NSW"
                     onChange={this.handleChange}
+                    value={this.state.region}
                 />
         <br/>
                 <TextField
@@ -70,6 +115,7 @@ class Address extends Component {
                     type="text"
                     defaultValue="Australia"
                     onChange={this.handleChange}
+                    value={this.state.country}
                 />
         <br/>
 
